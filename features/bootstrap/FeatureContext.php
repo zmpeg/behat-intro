@@ -31,6 +31,18 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * Remove any files that might have been created
+     *
+     * @AfterScenario
+     */
+    public function cleanupFiles() {
+        $projectDir = dirname(getcwd());
+        $cleanupPath = basename(getcwd());
+        chdir($projectDir);
+        exec("rm -rf {$cleanupPath}");
+    }
+
+    /**
      * @Given /^I am in a directory "([^"]*)"$/
      */
     public function iAmInADirectory($dir)
