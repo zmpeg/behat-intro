@@ -13,3 +13,16 @@ Feature: ls
       bar
       foo
       """
+
+  Scenario: List 2 files in a directory with the -a flag
+    Given I am in a directory "test"
+    And I have a file named "foo"
+    And I have a file named ".bar"
+    When I run "ls -a"
+    Then I should get:
+      """
+      .
+      ..
+      .bar
+      foo
+      """
